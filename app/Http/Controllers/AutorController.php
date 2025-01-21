@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Autor;
 
 class AutorController extends Controller
 {
@@ -19,7 +20,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        return view("autor_form");
     }
 
     /**
@@ -27,15 +28,23 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $autor = new Autor();
+        $autor->nombre = $request->input("nombre");
+        $autor->nacionalidad = $request->input("nacionalidad");
+        $autor->fecha_nacimiento = $request->input("fecha_nacimiento");
+        $autor->biografia = $request->input("biografia");
+        $autor->codigoDewey = $request->input("codigoDewey");
+        $autor->save();
+
+        return redirect()->route("autores.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Autor $autor)
     {
-        //
+        return $autor;
     }
 
     /**
