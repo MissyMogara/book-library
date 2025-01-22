@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("portada");
             $table->year("anio_publicacion");
             $table->enum('estado', ['disponible', 'prestado', 'extraviado'])->default('disponible');
-            $table->unsignedBigInteger("autor_id");
-            $table->unsignedBigInteger("ubicacion_id");
+            $table->unsignedBigInteger("autor_id")->default(1); //  El valor por defecto es para que no de un pete, luego lo actualizo
+            $table->unsignedBigInteger("ubicacion_id")->default(1);
             $table->timestamps();
 
             $table->foreign('autor_id')->references('id')->on('autores')->onDelete('cascade');

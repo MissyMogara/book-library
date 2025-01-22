@@ -26,8 +26,9 @@ class LibroFactory extends Factory
             'portada' => $this->faker->imageUrl(200, 300, 'books', true, 'Faker'),
             'anio_publicacion' => $this->faker->year,
             'estado' => $this->faker->randomElement(['disponible', 'prestado', 'extraviado']),
-            'autor_id' => Autor::factory(),
-            'ubicacion_id' => Ubicacion::factory(),
+            // 'autor_id' => Autor::factory(),
+            // 'ubicacion_id' => Ubicacion::factory(),
+            //  Si lo hago asi entonces me creara 50 autores + 500 autores, se lo agregare despues de la creación.
         ];
     }
 }

@@ -20,7 +20,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        return view("autor_form");
+        return view("admin.autor_create_form");
     }
 
     /**
@@ -36,7 +36,7 @@ class AutorController extends Controller
         $autor->codigoDewey = $request->input("codigoDewey");
         $autor->save();
 
-        return redirect()->route("autores.index");
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -44,30 +44,31 @@ class AutorController extends Controller
      */
     public function show(Autor $autor)
     {
-        return $autor;
+        return view('admin.autor_detalle', ['autor' => $autor]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Autor $autor)
     {
-        //
+        return view('admin.autor_edit_form', ['autor' => $autor]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Autor $autor)
     {
-        //
+        $autor->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Autor $autor)
     {
-        //
+        Autor::destroy($autor);
+        return redirect()->route("dashboard");
     }
 }
