@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("titulo");
             $table->string("isbn");
             $table->string("portada");
-            $table->date("anio_publicacion");
+            $table->year("anio_publicacion");
             $table->enum('estado', ['disponible', 'prestado', 'extraviado'])->default('disponible');
             $table->unsignedBigInteger("autor_id");
             $table->unsignedBigInteger("ubicacion_id");
