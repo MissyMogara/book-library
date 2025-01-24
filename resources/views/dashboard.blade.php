@@ -20,7 +20,9 @@
                 <tr class="hover:bg-gray-100">
                     <x-table.td>{{ $libro->id }}</x-table.td>
                     <x-table.td>{{ $libro->titulo }}</x-table.td>
-                    <x-table.td>{{ $libro->autor->nombre }}</x-table.td>
+                    <x-table.td><a href="{{ url('/autores/' . $libro->autor->id) }}">
+                        {{ $libro->autor->nombre }}
+                      </a></x-table.td>
                     <x-table.td>{{ $libro->anio_publicacion }}</x-table.td>
                     <x-table.td>{{ $libro->estado }}</x-table.td>
                     <x-table.td>{{ $libro->ubicacion->biblioteca }}</x-table.td>

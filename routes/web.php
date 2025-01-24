@@ -10,8 +10,9 @@ Route::get('/', function () {
 });
 
 Route::prefix('autores')->group(function () {
-    Route::get('/autores/{id}', function ($id) {
+    Route::get('/{id}', function ($id) {
         $autor = Autor::findOrFail($id);
+        //dd($autor->fecha_nacimiento);
         return view('admin.autores.autor_detalle', compact('autor'));
     });
 });
@@ -24,5 +25,5 @@ Route::prefix('dashboard')->group(function () {
         $ubicaciones = Ubicacion::all();
 
         return view('dashboard', compact('libros', 'autores', 'ubicaciones'));
-    });
+    })->name('dashboard');
 });

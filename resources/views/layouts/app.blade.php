@@ -14,7 +14,7 @@
         <a href="#">Contacto</a>
     </nav>
     </header>
-    <main>
+    <main class="min-h-screen">
         @yield('content') 
     </main>
     <footer class="p-5 bg-gray-800 flex flex-col justify-around items-center gap-x-4 text-white">
