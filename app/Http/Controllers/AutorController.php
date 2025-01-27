@@ -12,7 +12,8 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        $autores = Autor::paginate(25);
+        return view('admin.autores.autores_view', compact('autores'));
     }
 
     /**
@@ -42,9 +43,10 @@ class AutorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Autor $autor)
+    public function show($id)
     {
-        return view('admin.autor_detalle', ['autor' => $autor]);
+        $autor = Autor::findOrFail($id);
+        return view('admin.autores.autor_detalle', compact('autor'));
     }
 
     /**

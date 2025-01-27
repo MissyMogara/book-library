@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Libro;
+use App\Models\Autor;
+use App\Models\Ubicacion;
 
 class LibroController extends Controller
 {
@@ -11,7 +14,12 @@ class LibroController extends Controller
      */
     public function index()
     {
-        //
+        $libros = Libro::with(['autor', 'ubicacion'])->paginate(50);
+
+        $autores = Autor::all();
+        $ubicaciones = Ubicacion::all();
+
+        return view('dashboard', compact('libros', 'autores', 'ubicaciones'));
     }
 
     /**

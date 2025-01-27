@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ubicacion;
 
 class UbicacionController extends Controller
 {
@@ -11,7 +12,8 @@ class UbicacionController extends Controller
      */
     public function index()
     {
-        //
+        $ubicaciones = Ubicacion::all();
+        return view('admin.ubicaciones.ubicaciones_view', compact('ubicaciones'));
     }
 
     /**
@@ -33,9 +35,10 @@ class UbicacionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $ubicacion = Ubicacion::findOrFail($id);
+        return view('admin.ubicaciones.ubicacion_detalle', compact('ubicacion'));
     }
 
     /**

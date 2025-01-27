@@ -4,26 +4,24 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\Ubicacion;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\UbicacionController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('ubicaciones')->group(function () {
+    Route::get('/', [UbicacionController::class, 'index'])->name('ubicaciones');
+    Route::get('/{id}', [UbicacionController::class, 'show'])->name('ubicacion_detalle');
+});
+
 Route::prefix('autores')->group(function () {
-    Route::get('/{id}', function ($id) {
-        $autor = Autor::findOrFail($id);
-        //dd($autor->fecha_nacimiento);
-        return view('admin.autores.autor_detalle', compact('autor'));
-    });
+    Route::get('/', [AutorController::class, 'index'])->name('autores');
+    Route::get('/{id}', [AutorController::class, 'show'])->name('autor_detalle');
 });
 
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        $libros = Libro::with(['autor', 'ubicacion'])->paginate(50);
-
-        $autores = Autor::all();
-        $ubicaciones = Ubicacion::all();
-
-        return view('dashboard', compact('libros', 'autores', 'ubicaciones'));
-    })->name('dashboard');
+    Route::get('/', [LibroController::class, 'index'])->name('dashboard');
 });

@@ -10,10 +10,13 @@
         :fechaNacimiento="$autor->fecha_nacimiento" 
         :codigoDewey="$autor->codigoDewey">
     </x-cards.autor_card>
-    <div class="bg-sky-800">
-        <button class="bg-sky-800 p-2">
+    <div class="flex justify-center mt-5">
+        <x-buttons.normal_button :ruta="route('dashboard')" identifier="deleteAutor" color="red">
             borrar
-        </button>
+        </x-buttons.normal_button>
+        <x-buttons.normal_button :ruta="route('dashboard')" identifier="editAutor" color="blue">
+            editar
+        </x-buttons.normal_button>
     </div>
     
 </div>

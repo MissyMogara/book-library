@@ -9,9 +9,9 @@
 <body>
     <header class="p-5 bg-cyan-700 flex justify-around items-center gap-x-4 text-white">
     <nav class="flex gap-x-6">
-        <a href="#">Inicio</a>
-        <a href="#">Acerca</a>
-        <a href="#">Contacto</a>
+        <a href="{{route('dashboard')}}">Libros</a>
+        <a href="{{route('autores')}}">Autores</a>
+        <a href="{{route('ubicaciones')}}">Ubicaciones</a>
     </nav>
     </header>
     <main class="min-h-screen">
