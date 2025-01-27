@@ -19,6 +19,10 @@ export default defineConfig({
                 entryFileNames: '[name].[hash].js',
             }
         }
-    }
+    },
+    server: {
+        cors: true, 
+        host: 'localhost', 
+    },
 });
 

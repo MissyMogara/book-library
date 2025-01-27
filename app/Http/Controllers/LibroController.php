@@ -16,10 +16,10 @@ class LibroController extends Controller
     {
         $libros = Libro::with(['autor', 'ubicacion'])->paginate(50);
 
-        $autores = Autor::all();
-        $ubicaciones = Ubicacion::all();
+        // $autores = Autor::all();
+        // $ubicaciones = Ubicacion::all();
 
-        return view('dashboard', compact('libros', 'autores', 'ubicaciones'));
+        return view('dashboard', compact('libros'));
     }
 
     /**
@@ -43,7 +43,8 @@ class LibroController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $libro = Libro::with(['autor', 'ubicacion'])->findOrFail($id);
+        return view('admin.libros.libro_detalle', compact('libro'));
     }
 
     /**

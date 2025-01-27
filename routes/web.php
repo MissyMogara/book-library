@@ -24,4 +24,5 @@ Route::prefix('autores')->group(function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [LibroController::class, 'index'])->name('dashboard');
+    Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libro_detalle');
 });

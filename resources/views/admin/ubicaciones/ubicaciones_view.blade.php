@@ -16,10 +16,14 @@
         <tbody class="text-gray-800 text-sm">
             @foreach ($ubicaciones as $ubicacion)
                 <tr class="hover:bg-gray-100">
-                    <x-table.td>{{ $ubicacion->id }}</x-table.td>
-                    <x-table.td><a href="{{ url('/ubicaciones/' . $ubicacion->id) }}">
+                    <x-table.td>
+                        <a href="{{ route('ubicacion_detalle', ['id' => $ubicacion->id])  }}">{{ $ubicacion->id }}</a>
+                    </x-table.td>
+                    <x-table.td>
+                        <a href="{{ route('ubicacion_detalle', ['id' => $ubicacion->id])  }}">
                         {{ $ubicacion->biblioteca }}
-                      </a></x-table.td>
+                    </a>
+                    </x-table.td>
                     <x-table.td>{{ $ubicacion->direccion }}</x-table.td>
                     <x-table.td>{{ $ubicacion->numero_estanterias }}</x-table.td>
                 </tr>

@@ -19,13 +19,16 @@
             @foreach ($libros as $libro)
                 <tr class="hover:bg-gray-100">
                     <x-table.td>{{ $libro->id }}</x-table.td>
-                    <x-table.td>{{ $libro->titulo }}</x-table.td>
-                    <x-table.td><a href="{{ url('/autores/' . $libro->autor->id) }}">
+                    <x-table.td>
+                        <a href="{{ route('libro_detalle', ['id' => $libro->id]) }}">{{ $libro->titulo }}</a></x-table.td>
+                    <x-table.td><a href="{{ route('autor_detalle', ['id' => $libro->autor->id]) }}">
                         {{ $libro->autor->nombre }}
                       </a></x-table.td>
                     <x-table.td>{{ $libro->anio_publicacion }}</x-table.td>
                     <x-table.td>{{ $libro->estado }}</x-table.td>
-                    <x-table.td>{{ $libro->ubicacion->biblioteca }}</x-table.td>
+                    <x-table.td><a href="{{ route('ubicacion_detalle', ['id' => $libro->ubicacion->id])  }}">
+                        {{ $libro->ubicacion->biblioteca }}
+                    </a></x-table.td>
                 </tr>
             @endforeach
         </tbody>

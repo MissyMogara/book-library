@@ -18,7 +18,7 @@
             @foreach ($autores as $autor)
                 <tr class="hover:bg-gray-100">
                     <x-table.td>{{ $autor->id }}</x-table.td>
-                    <x-table.td><a href="{{ url('/autores/' . $autor->id) }}">
+                    <x-table.td><a href="{{ route('autor_detalle', ['id' => $autor->id])  }}">
                         {{ $autor->nombre }}
                       </a></x-table.td>
                     <x-table.td>{{ $autor->nacionalidad }}</x-table.td>
