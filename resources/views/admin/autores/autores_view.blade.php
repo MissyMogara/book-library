@@ -3,6 +3,14 @@
 @section('title', 'Autores')
 
 @section('content')
+<div class="text-center">
+    <h1>Autores</h1>
+    <a href=" {{ route('autor_create') }} ">
+        <button class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded-lg mt-3 mb-3">
+            Crear Autor
+        </button>
+    </a>
+</div>
 <div class="flex justify-center">
     <x-table.table>
         <thead>

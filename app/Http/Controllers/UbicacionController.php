@@ -21,7 +21,7 @@ class UbicacionController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.ubicaciones.ubicacion_create_form");
     }
 
     /**
@@ -29,7 +29,13 @@ class UbicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ubicacion = new Ubicacion();
+        $ubicacion->biblioteca = $request->input("biblioteca");
+        $ubicacion->direccion = $request->input("direccion");
+        $ubicacion->numero_estanterias = $request->input("numero_estanterias");
+        $ubicacion->save();
+
+        return redirect()->route("ubicaciones");
     }
 
     /**
@@ -60,8 +66,10 @@ class UbicacionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $ubicacion = Ubicacion::findOrFail($id);
+        $ubicacion->delete();
+        return redirect()->route("ubicaciones");
     }
 }

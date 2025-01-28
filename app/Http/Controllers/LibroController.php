@@ -27,7 +27,7 @@ class LibroController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.libros.libro_create_form');
     }
 
     /**
@@ -35,7 +35,28 @@ class LibroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'portada' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $libro = new Libro();
+        $libro->titulo = $request->titulo;
+        $libro->anio_publicacion = $request->anio_publicacion;
+        $libro->isbn = $request->isbn;
+        $libro->estado = $request->estado;
+        $libro->ubicacion_id = $request->ubicacion_id;
+        $libro->autor_id = $request->autor_id;
+
+        if ($request->hasFile('portada')) {
+            $file = $request->file('portada');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/portadas', $filename);
+            $libro->portada = $filename;
+        }
+
+        $libro->save();
+
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -66,8 +87,10 @@ class LibroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $libro = Libro::findOrFail($id);
+        $libro->delete();
+        return redirect()->route('dashboard');
     }
 }

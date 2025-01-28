@@ -21,7 +21,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        return view("admin.autor_create_form");
+        return view("admin.autores.autor_create_form");
     }
 
     /**
@@ -68,9 +68,10 @@ class AutorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Autor $autor)
+    public function destroy($id)
     {
-        Autor::destroy($autor);
-        return redirect()->route("dashboard");
+        $autor = Autor::findOrFail($id);
+        $autor->delete();
+        return redirect()->route("autores");
     }
 }
