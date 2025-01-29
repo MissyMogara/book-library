@@ -51,7 +51,7 @@ class LibroController extends Controller
         if ($request->hasFile('portada')) {
             $file = $request->file('portada');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/portadas', $filename);
+            $path = $file->storeAs('portadas', $filename, 'public');
             $libro->portada = $filename;
         }
 
@@ -98,10 +98,9 @@ class LibroController extends Controller
             ]);
 
             Storage::delete('public/portadas/' . $old_filename);
-
             $file = $request->file('portada');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/portadas', $filename);
+            $path = $file->storeAs('portadas', $filename, 'public');
             $libro->portada = $filename;
             $libro->save();
         }

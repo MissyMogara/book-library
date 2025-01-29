@@ -1,11 +1,11 @@
 <div class="text-center bg-white rounded-lg shadow-md overflow-hidden">
-
-    <img 
-        src="{{ asset('storage/portadas/' . $portada) ?? asset('storage/portadas/Miqotilla.png') }}" 
-        alt="Portada del libro" 
-        class="w-full h-48 object-cover"
-    >
-
+    <div class="flex justify-center mt-4 mb-4">
+        <img 
+            src="{{ asset('storage/portadas/' . $portada) ?? asset('storage/portadas/Miqotilla.png') }}" 
+            alt="Portada del libro" 
+            class="w-48 h-48 object-cover"
+        >
+    </div>
     <div class="p-4">
         <h2 class="text-lg font-semibold text-gray-800">{{ $titulo ?? 'Título no disponible' }}</h2>
         <h3 class="text-sm text-gray-600 mb-4">ISBN: {{ $isbn ?? 'ISBN no disponible' }}</h3>
