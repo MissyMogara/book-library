@@ -10,7 +10,7 @@ class Libro extends Model
     /** @use HasFactory<\Database\Factories\LibroFactory> */
     use HasFactory;
     protected $table = 'libros';
-    protected $filleable = ['titulo', 'isbn', 'portada', 'anio_publicacion', 'estado', 'autor_id', 'ubicacion_id'];
+    protected $fillable = ['titulo', 'isbn', 'portada', 'anio_publicacion', 'estado', 'autor_id', 'ubicacion_id', 'portada'];
 
     public function autor()
     {

@@ -52,17 +52,20 @@ class AutorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Autor $autor)
+    public function edit($id)
     {
-        return view('admin.autor_edit_form', ['autor' => $autor]);
+        $autor = Autor::findOrFail($id);
+        return view('admin.autores.autor_edit_form', ['autor' => $autor]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Autor $autor)
+    public function update(Request $request, $id)
     {
+        $autor = Autor::findOrFail($id);
         $autor->update($request->all());
+        return redirect()->route('autores');
     }
 
     /**

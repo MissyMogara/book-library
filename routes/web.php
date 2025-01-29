@@ -18,6 +18,8 @@ Route::prefix('ubicaciones')->group(function () {
     Route::post('/', [UbicacionController::class, 'store'])->name('ubicaciones.store');
     Route::get('/{id}', [UbicacionController::class, 'show'])->name('ubicacion_detalle');
     Route::delete('/{id}', [UbicacionController::class, 'destroy'])->name('ubicaciones.destroy');
+    Route::get('/{id}/edit', [UbicacionController::class, 'edit'])->name('ubicaciones.edit');
+    Route::put('/{id}', [UbicacionController::class, 'update'])->name('ubicaciones.update');
 });
 
 Route::prefix('autores')->group(function () {
@@ -26,6 +28,8 @@ Route::prefix('autores')->group(function () {
     Route::post('/', [AutorController::class, 'store'])->name('autores.store');
     Route::get('/{id}', [AutorController::class, 'show'])->name('autor_detalle');
     Route::delete('/{id}', [AutorController::class, 'destroy'])->name('autores.destroy');
+    Route::get('/{id}/edit', [AutorController::class, 'edit'])->name('autores.edit');
+    Route::put('/{id}', [AutorController::class, 'update'])->name('autores.update');
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -34,4 +38,6 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/', [LibroController::class, 'store'])->name('libros.store');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libro_detalle');
     Route::delete('/libros/{id}', [LibroController::class, 'destroy'])->name('libros.destroy');
+    Route::get('/{id}/edit', [LibroController::class, 'edit'])->name('libros.edit');
+    Route::put('/{id}', [LibroController::class, 'update'])->name('libros.update');
 });

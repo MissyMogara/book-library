@@ -11,16 +11,14 @@
         :codigoDewey="$autor->codigoDewey">
     </x-cards.autor_card>
     <div class="flex justify-center mt-5">
-        {{-- <a href="{{ route('autores.edit', ['autor' => $autor->id]) }}">
-            <button class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded-lg">
-                Editar
-            </button>
-        </a> --}}
         <a href="{{ route('autores') }}">
-            <button class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded-lg">
+            <button class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded-lg mr-3">
                 Volver
             </button>
         </a>
+        <a href="{{ route('autores.edit', ['id' => $autor->id]) }}" class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg">
+            Editar
+        </a>        
         <form action="{{ route('autores.destroy', $autor->id) }}" method="POST">
             @csrf
             @method('DELETE')

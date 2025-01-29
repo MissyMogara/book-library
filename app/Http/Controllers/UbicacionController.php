@@ -50,17 +50,20 @@ class UbicacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $ubicacion = Ubicacion::findOrFail($id);
+        return view('admin.ubicaciones.ubicacion_edit_form', ['ubicacion' => $ubicacion]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $ubicacion = Ubicacion::findOrFail($id);
+        $ubicacion->update($request->all());
+        return redirect()->route('ubicaciones');
     }
 
     /**

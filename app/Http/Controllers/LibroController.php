@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\Ubicacion;
+use Illuminate\Support\Facades\Storage;
 
 class LibroController extends Controller
 {
@@ -71,17 +72,42 @@ class LibroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $libro = Libro::findOrFail($id);
+        return view('admin.libros.libro_edit_form', ['libro' => $libro]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $libro = Libro::findOrFail($id);
+
+        $old_filename = $libro->portada;
+
+        $libro->update($request->except('portada'));
+
+
+
+        if ($request->hasFile('portada')) {
+
+            $request->validate([
+                'portada' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            Storage::delete('public/portadas/' . $old_filename);
+
+            $file = $request->file('portada');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/portadas', $filename);
+            $libro->portada = $filename;
+            $libro->save();
+        }
+
+
+        return redirect()->route('dashboard');
     }
 
     /**

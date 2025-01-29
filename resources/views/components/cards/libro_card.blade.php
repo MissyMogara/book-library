@@ -1,7 +1,7 @@
 <div class="text-center bg-white rounded-lg shadow-md overflow-hidden">
-    <!-- Portada del libro -->
+
     <img 
-        src="{{ $portada ?? 'https://via.placeholder.com/150' }}" 
+        src="{{ asset('storage/portadas/' . $portada) ?? asset('storage/portadas/Miqotilla.png') }}" 
         alt="Portada del libro" 
         class="w-full h-48 object-cover"
     >
