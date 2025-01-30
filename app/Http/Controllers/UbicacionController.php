@@ -30,6 +30,12 @@ class UbicacionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'biblioteca' => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'numero_estanterias' => 'required|integer|min:1',
+        ]);
+
         $ubicacion = new Ubicacion();
         $ubicacion->biblioteca = $request->input("biblioteca");
         $ubicacion->direccion = $request->input("direccion");
@@ -63,6 +69,12 @@ class UbicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'biblioteca' => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'numero_estanterias' => 'required|integer|min:1',
+        ]);
+
         $ubicacion = Ubicacion::findOrFail($id);
         $ubicacion->update($request->all());
         return redirect()->route('ubicaciones');

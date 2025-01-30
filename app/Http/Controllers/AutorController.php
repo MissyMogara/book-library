@@ -29,6 +29,14 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'nacionalidad' => 'required|string|max:100',
+            'fecha_nacimiento' => 'required|date|before:today',
+            'biografia' => 'nullable|string',
+            'codigoDewey' => 'required|string|size:3|regex:/^[0-9]{3}$/',
+        ]);
+
         $autor = new Autor();
         $autor->nombre = $request->input("nombre");
         $autor->nacionalidad = $request->input("nacionalidad");
@@ -63,6 +71,14 @@ class AutorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'nacionalidad' => 'required|string|max:100',
+            'fecha_nacimiento' => 'required|date|before:today',
+            'biografia' => 'nullable|string',
+            'codigoDewey' => 'required|string|size:3|regex:/^[0-9]{3}$/',
+        ]);
+
         $autor = Autor::findOrFail($id);
         $autor->update($request->all());
         return redirect()->route('autores');

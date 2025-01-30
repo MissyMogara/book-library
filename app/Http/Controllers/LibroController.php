@@ -38,6 +38,12 @@ class LibroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'titulo' => 'required|string|max:255',
+            'isbn' => 'required|string|max:20|unique:libros,isbn',
+            'anio_publicacion' => 'required|integer|min:1500|max:' . date('Y'),
+            'estado' => 'required|in:disponible,prestado,extraviado',
+            'autor_id' => 'required|exists:autores,id',
+            'ubicacion_id' => 'required|exists:ubicaciones,id',
             'portada' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -90,13 +96,17 @@ class LibroController extends Controller
 
         $libro->update($request->except('portada'));
 
-
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'isbn' => 'required|string|max:20|unique:libros,isbn,' . $libro->id,
+            'anio_publicacion' => 'required|integer|min:1500|max:' . date('Y'),
+            'estado' => 'required|in:disponible,prestado,extraviado',
+            'autor_id' => 'required|exists:autores,id',
+            'ubicacion_id' => 'required|exists:ubicaciones,id',
+            'portada' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
         if ($request->hasFile('portada')) {
-
-            $request->validate([
-                'portada' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
 
             Storage::delete('public/portadas/' . $old_filename);
             $file = $request->file('portada');
