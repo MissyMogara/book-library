@@ -25,6 +25,7 @@ Route::prefix('ubicaciones')->group(function () {
 Route::prefix('autores')->group(function () {
     Route::get('/', [AutorController::class, 'index'])->name('autores');
     Route::get('/create', [AutorController::class, 'create'])->name('autor_create');
+    Route::get('/buscar', [AutorController::class, 'buscar'])->name('autores.buscar');
     Route::post('/', [AutorController::class, 'store'])->name('autores.store');
     Route::get('/{id}', [AutorController::class, 'show'])->name('autor_detalle');
     Route::delete('/{id}', [AutorController::class, 'destroy'])->name('autores.destroy');

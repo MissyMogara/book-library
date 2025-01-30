@@ -77,4 +77,17 @@ class AutorController extends Controller
         $autor->delete();
         return redirect()->route("autores");
     }
+
+    /**
+     * Search for a specifics authors.
+     */
+    public function buscar(Request $request)
+    {
+        $query = $request->input('autor_query');
+        $opcion = $request->input('opcion', 'nombre');
+
+        $autores = Autor::where($opcion, 'like', "%$query%")->paginate(25);
+
+        return view('admin.autores.autores_view', compact('autores'));
+    }
 }

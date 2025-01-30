@@ -12,6 +12,22 @@
     </a>
 </div>
 <div class="flex justify-center">
+    <div>
+    <form action="{{ route('autores.buscar') }}" method="GET">
+        <label for="" class="mr-2">Buscar por:</label>
+        <select name="opcion" id="" class="border border-gray-300 rounded-lg px-2">
+            <option value="nombre">Nombre</option>
+            <option value="nacionalidad">Nacionalidad</option>
+        </select>
+        <br>
+        <input type="text" name="autor_query" placeholder="Buscar autor..." id="" class="mt-2 mr-2 border border-gray-300 rounded-lg px-2">
+        <button type="submit" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-2 px-4 rounded-lg mt-3 mb-3">
+            Buscar
+        </button>
+    </form>
+    </div>
+</div>
+<div class="flex justify-center">
     <x-table.table>
         <thead>
             <tr class="bg-gray-100 text-gray-950 uppercase text-sm leading-normal">

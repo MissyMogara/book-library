@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ubicacion;
+use App\Models\Libro;
 
 class UbicacionController extends Controller
 {
@@ -44,7 +45,8 @@ class UbicacionController extends Controller
     public function show($id)
     {
         $ubicacion = Ubicacion::findOrFail($id);
-        return view('admin.ubicaciones.ubicacion_detalle', compact('ubicacion'));
+        $libros = Libro::where('ubicacion_id', $id)->paginate(20);
+        return view('admin.ubicaciones.ubicacion_detalle', compact('ubicacion', 'libros'));
     }
 
     /**
