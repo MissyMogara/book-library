@@ -36,6 +36,7 @@ Route::prefix('autores')->group(function () {
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [LibroController::class, 'index'])->name('dashboard');
     Route::get('/create', [LibroController::class, 'create'])->name('libro_create');
+    Route::get('/buscar', [LibroController::class, 'buscar'])->name('libros.buscar');
     Route::post('/', [LibroController::class, 'store'])->name('libros.store');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libro_detalle');
     Route::delete('/libros/{id}', [LibroController::class, 'destroy'])->name('libros.destroy');

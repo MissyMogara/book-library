@@ -7,6 +7,7 @@ use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\Ubicacion;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class LibroController extends Controller
 {
@@ -117,5 +118,37 @@ class LibroController extends Controller
         $libro = Libro::findOrFail($id);
         $libro->delete();
         return redirect()->route('dashboard');
+    }
+
+    /**
+     * Search libros by request.
+     */
+    public function buscar(Request $request)
+    {
+        $query = $request->input('libro_query');
+        $opcion = $request->input('opcion');
+
+        $validColumns = ['titulo', 'autor', 'ubicacion', 'isbn', 'estado'];
+        if (!in_array($opcion, $validColumns)) {
+            $opcion = 'titulo';
+        }
+
+        $librosQuery = Libro::with(['autor', 'ubicacion']);
+
+
+        if ($opcion == 'autor') {
+            $librosQuery->whereHas('autor', function ($q) use ($query) {
+                $q->where('nombre', 'like', "%$query%");
+            });
+        } elseif ($opcion == 'ubicacion') {
+            $librosQuery->whereHas('ubicacion', function ($q) use ($query) {
+                $q->where('biblioteca', 'like', "%$query%");
+            });
+        } else {
+            $librosQuery->where($opcion, 'like', "%$query%");
+        }
+
+        $libros = $librosQuery->paginate(50);
+        return view('dashboard', compact('libros'));
     }
 }
