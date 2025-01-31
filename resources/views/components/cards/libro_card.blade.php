@@ -1,7 +1,7 @@
 <div class="text-center bg-white rounded-lg shadow-md overflow-hidden">
     <div class="flex justify-center mt-4 mb-4">
         <img 
-            src="{{ asset('storage/portadas/' . $portada) ?? asset('storage/portadas/Miqotilla.png') }}" 
+            src="{{ asset('storage/portadas/' . $portada) ?? '' }}" 
             alt="Portada del libro" 
             class="w-48 h-48 object-cover"
         >

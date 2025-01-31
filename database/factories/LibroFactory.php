@@ -20,10 +20,22 @@ class LibroFactory extends Factory
      */
     public function definition(): array
     {
+        $imagenes = [
+            '1.png',
+            '2.png',
+            '3.png',
+            '4.png',
+            '5.png',
+            '6.png',
+            '7.png',
+            '8.png',
+            '9.png',
+            '10.png',
+        ];
         return [
             'titulo' => $this->faker->sentence(3),
             'isbn' => $this->faker->isbn13,
-            'portada' => $this->faker->imageUrl(200, 300, 'books', true, 'Faker'),
+            'portada' => $this->faker->randomElement($imagenes),
             'anio_publicacion' => $this->faker->year,
             'estado' => $this->faker->randomElement(['disponible', 'prestado', 'extraviado']),
             // 'autor_id' => Autor::factory(),

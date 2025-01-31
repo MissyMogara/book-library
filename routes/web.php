@@ -7,6 +7,7 @@ use App\Models\Ubicacion;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\UbicacionController;
+use App\Http\Controllers\APIController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,11 +43,4 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/libros/{id}', [LibroController::class, 'destroy'])->name('libros.destroy');
     Route::get('/{id}/edit', [LibroController::class, 'edit'])->name('libros.edit');
     Route::put('/{id}', [LibroController::class, 'update'])->name('libros.update');
-});
-
-Route::prefix('api/v1')->group(function () {
-    Route::get('/libros', [LibroController::class, 'index'])->middleware('auth:sanctum');
-    Route::post('/libros', [LibroController::class, 'store'])->middleware('auth:sanctum');
-    Route::get('/libros/{id}', [LibroController::class, 'show'])->middleware('auth:sanctum');
-    Route::delete('/libros/{id}', [LibroController::class, 'destroy'])->middleware('auth:sanctum');
 });
