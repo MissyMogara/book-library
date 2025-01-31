@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Libro;
 
 class APIController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() //GET /api/v1/libros 
     {
-        //
+        $libros = Libro::with(['autor', 'ubicacion']);
+        return response()->json($libros->paginate(50));
     }
 
     /**

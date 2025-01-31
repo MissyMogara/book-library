@@ -43,3 +43,10 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/{id}/edit', [LibroController::class, 'edit'])->name('libros.edit');
     Route::put('/{id}', [LibroController::class, 'update'])->name('libros.update');
 });
+
+Route::prefix('api/v1')->group(function () {
+    Route::get('/libros', [LibroController::class, 'index'])->middleware('auth:sanctum');
+    Route::post('/libros', [LibroController::class, 'store'])->middleware('auth:sanctum');
+    Route::get('/libros/{id}', [LibroController::class, 'show'])->middleware('auth:sanctum');
+    Route::delete('/libros/{id}', [LibroController::class, 'destroy'])->middleware('auth:sanctum');
+});
